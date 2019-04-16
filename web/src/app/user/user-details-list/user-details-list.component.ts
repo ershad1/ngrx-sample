@@ -1,9 +1,15 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
+import {Store} from '@ngrx/store';
+import {select} from '@ngrx/store/src/store';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/internal/operators/tap';
+import {AppState} from '../../reducers';
 import {UserDetails} from '../model/user-details';
+import {UserDetailsDataSource} from '../service/user-details.datasource';
+import {PageQuery} from '../state/user-details.actions';
+import {selectUserDetailsLoading} from '../state/user-details.selectors';
 
 @Component({
   selector: 'app-user-details-list',
@@ -12,7 +18,9 @@ import {UserDetails} from '../model/user-details';
 })
 export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
-  dataSource: userDetailssDataSource;
+  @Input()
+  users : UserDetails[];
+  dataSource: UserDetailsDataSource;
 
   displayedColumns = ["seqNo", "description", "duration"];
 
@@ -29,9 +37,9 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
     this.course = this.route.snapshot.data["course"];
 
-    this.loading$ = this.store.pipe(select(selectLessonsLoading));
+    this.loading$ = this.store.pipe(select(selectUserDetailsLoading));
 
-    this.dataSource = new userDetailssDataSource(this.store);
+    this.dataSource = new UserDetailsDataSource(this.store);
 
     const initialPage: PageQuery = {
       pageIndex: 0,
