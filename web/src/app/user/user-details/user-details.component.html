@@ -1,0 +1,22 @@
+<div class="courses-panel">
+
+  <h2 class="title">All User Details</h2>
+
+
+  <mat-tab-group>
+
+    <mat-tab label="Beginners">
+
+      <app-user-details-list
+
+        [users]="users$ | async">
+
+      </app-user-details-list>
+
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+</div>
+
