@@ -22,9 +22,7 @@ export const selectUserDetailsPage = (page:PageQuery) => createSelector(
 
     return allUserDetails
       .slice(start, end);
-
   }
-
 );
 
 
