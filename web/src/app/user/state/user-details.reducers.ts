@@ -27,7 +27,7 @@ const initialLessonsState = adapter.getInitialState({
 });
 
 
-export function lessonsReducer(state = initialLessonsState,
+export function userDetailsReducer(state = initialLessonsState,
                                action: UserDetailsActions): UserDetailsState {
 
   switch (action.type) {

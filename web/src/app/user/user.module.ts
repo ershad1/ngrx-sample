@@ -5,6 +5,11 @@ import {UserDetailsListComponent} from './user-details-list/user-details-list.co
 import {UserDetailsComponent} from './user-details/user-details.component';
 
 import {UserRoutingModule} from './user-routing.module';
+import {EffectsModule} from '@ngrx/effects';
+import {RouterModule} from '@angular/router';
+import {StoreModule} from '@ngrx/store';
+import {UserDetailsEffects} from './state/user-details.effects';
+import {userDetailsReducer} from './state/user-details.reducers';
 
 @NgModule({
   declarations: [
@@ -14,7 +19,9 @@ import {UserRoutingModule} from './user-routing.module';
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('userDetails', userDetailsReducer),
+    EffectsModule.forFeature([UserDetailsEffects])
   ]
 })
 export class UserModule {

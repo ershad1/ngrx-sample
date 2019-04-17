@@ -20,9 +20,9 @@ export class UserDetailsDataSource implements DataSource<UserDetails> {
     this.store
       .pipe(
         select(selectUserDetailsPage(page)),
-        tap(lessons => {
-          if (lessons.length > 0) {
-            this.userDetailsSubject.next(lessons);
+        tap(userDetails => {
+          if (userDetails.length > 0) {
+            this.userDetailsSubject.next(userDetails);
           } else {
             this.store.dispatch(new UserDetailsRequested({page}));
           }

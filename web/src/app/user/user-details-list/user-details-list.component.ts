@@ -35,18 +35,16 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.course = this.route.snapshot.data["course"];
-
     this.loading$ = this.store.pipe(select(selectUserDetailsLoading));
 
     this.dataSource = new UserDetailsDataSource(this.store);
 
     const initialPage: PageQuery = {
-      pageIndex: 0,
-      pageSize: 3
+      page: 0, size: 20, sort: "", sortDirection: ""
+
     };
 
-    this.dataSource.loadLessons(this.course.id, initialPage);
+    this.dataSource.userDetailsLoad( initialPage);
 
   }
 
@@ -54,21 +52,21 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
     this.paginator.page
       .pipe(
-        tap(() => this.loadLessonsPage())
+        tap(() => this.loadUsersDetailsPage$())
       )
       .subscribe();
 
 
   }
 
-  loadLessonsPage() {
+  loadUsersDetailsPage$() {
 
     const newPage: PageQuery = {
-      pageIndex: this.paginator.pageIndex,
-      pageSize: this.paginator.pageSize
+      page: 0, size: 0, sort: "", sortDirection: ""
+
     };
 
-    this.dataSource.loadLessons(this.course.id, newPage);
+    this.dataSource.userDetailsLoad(newPage);
 
   }
 

@@ -7,29 +7,32 @@ import {catchError, map} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {UserDetailsDataSource} from '../service/user-details.datasource';
 import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user-details.actions';
+import {UserDetailsService} from '../service/user-details.service';
 
 @Injectable()
 export class UserDetailsEffects {
 
 
+
   @Effect()
-  loadLessonsPage$ = this.actions$
+  loadUsersDetailsPage$ = this.actions$
     .pipe(
       ofType<UserDetailsRequested>(UserDetailsActionTypes.UserDetailsRequested),
       mergeMap(({payload}) =>
-        this.userDetailsDataSource.userDetailsLoad(payload.page)
+        this.userDetailsService.findAllUsersDetails(payload)
           .pipe(
             catchError(err => {
-              console.log('error loading a lessons page ', err);
+              console.log('error loading a user details page ', err);
               this.store.dispatch(new UserDetailsCancelled());
               return of([]);
             })
           )
+
       ),
-      map(userDetails => new UserDetailsLoaded({userDetails}))
+      map(usersDetails => new UserDetailsLoaded({usersDetails}))
     );
 
-  constructor(private actions$: Actions, private userDetailsDataSource: UserDetailsDataSource,
+  constructor(private actions$: Actions, private userDetailsService: UserDetailsService,
               private store: Store<AppState>) {
 
   }
