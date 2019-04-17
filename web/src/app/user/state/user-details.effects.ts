@@ -12,8 +12,6 @@ import {UserDetailsService} from '../service/user-details.service';
 @Injectable()
 export class UserDetailsEffects {
 
-
-
   @Effect()
   loadUsersDetailsPage$ = this.actions$
     .pipe(
