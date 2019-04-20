@@ -4,26 +4,26 @@ import {UserActions, UserActionTypes} from './user.actions';
 
 
 export interface UserState extends EntityState<User> {
-  loading: boolean;
+  isLoading: boolean;
 }
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 const initialLessonsState: UserState = adapter.getInitialState({
-  loading: false
+  isLoading: false
 });
 
 export function userReducer(state = initialLessonsState, action: UserActions): UserState {
 
   switch (action.type) {
     case UserActionTypes.UserRequested:
-      return {...state, loading: true};
+      return {...state, isLoading: true};
 
     case UserActionTypes.UserLoaded:
-      return adapter.addMany(action.payload.userDetails, {...state, loading: false});
+      return adapter.addMany(action.payload.userDetails, {...state, isLoading: false});
 
     case UserActionTypes.UserCancelled:
-      return {...state, loading: false};
+      return {...state, isLoading: false};
 
     default:
       return state;

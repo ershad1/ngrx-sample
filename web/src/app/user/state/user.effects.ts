@@ -19,7 +19,7 @@ export class UserEffects {
         this.userService.findAllUsers(payload.page.page, payload.page.size, payload.page.sort, payload.page.sortDirection)
           .pipe(
             catchError(err => {
-              console.log('error loading a user details page ', err);
+              console.log('error isLoading a user details page ', err);
               this.store.dispatch(new UserCancelled());
               return of([]);
             })

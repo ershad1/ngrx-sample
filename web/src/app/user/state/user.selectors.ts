@@ -27,5 +27,5 @@ export const selectUserPage = (page: PageQuery) => createSelector(
 
 export const selectUserLoading = createSelector(
   selectUserState,
-  userState => userState.loading
+  userState => userState.isLoading
 );

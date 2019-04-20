@@ -25,7 +25,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  loading$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
 
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {
@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.loading$ = this.store.pipe(select(selectUserLoading));
+    this.isLoading$ = this.store.pipe(select(selectUserLoading));
 
     this.dataSource = new UserDatasource(this.store);
 
