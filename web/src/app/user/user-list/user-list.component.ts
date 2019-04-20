@@ -8,7 +8,7 @@ import {AppState} from '../../reducers';
 import {User} from '../model/user';
 import {UserDatasource} from '../service/user.datasource';
 import {PageQuery} from '../state/user.actions';
-import {selectUserDetailsLoading} from '../state/user.selectors';
+import {selectUserLoading} from '../state/user.selectors';
 
 @Component({
   selector: 'app-user-list',
@@ -34,7 +34,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.loading$ = this.store.pipe(select(selectUserDetailsLoading));
+    this.loading$ = this.store.pipe(select(selectUserLoading));
 
     this.dataSource = new UserDatasource(this.store);
 

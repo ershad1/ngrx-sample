@@ -5,7 +5,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {User} from '../model/user';
 import {PageQuery, UserRequested} from '../state/user.actions';
-import {selectUserDetailsPage} from '../state/user.selectors';
+import {selectUserPage} from '../state/user.selectors';
 
 
 export class UserDatasource implements DataSource<User> {
@@ -19,7 +19,7 @@ export class UserDatasource implements DataSource<User> {
   userDetailsLoad(page: PageQuery) {
     this.store
       .pipe(
-        select(selectUserDetailsPage(page)),
+        select(selectUserPage(page)),
         tap(userDetails => {
           if (userDetails.length > 0) {
             this.userDetailsSubject.next(userDetails);

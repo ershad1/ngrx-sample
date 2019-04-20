@@ -12,7 +12,7 @@ export const selectAllUser = createSelector(
 );
 
 
-export const selectUserDetailsPage = (page: PageQuery) => createSelector(
+export const selectUserPage = (page: PageQuery) => createSelector(
   selectAllUser,
   allUserDetails => {
 
@@ -25,7 +25,7 @@ export const selectUserDetailsPage = (page: PageQuery) => createSelector(
 );
 
 
-export const selectUserDetailsLoading = createSelector(
+export const selectUserLoading = createSelector(
   selectUserState,
   userState => userState.loading
 );
