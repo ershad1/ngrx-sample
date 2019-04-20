@@ -9,7 +9,7 @@ import {UserDetails} from '../model/user-details';
 })
 export class UserDetailsService {
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
 
   }
 
@@ -20,7 +20,7 @@ export class UserDetailsService {
         .set('size', size.toString())
         .set('sort', sort + ',' + sortDirection)
     }).pipe(
-      map(res => res['payload'])
+      map(res => res['content'])
     );
   }
 }
