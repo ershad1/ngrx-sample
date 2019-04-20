@@ -8,26 +8,24 @@ export const selectUserState = createFeatureSelector<UserState>('user');
 
 export const selectAllUser = createSelector(
   selectUserState,
-  fromUser.getAllUsers
+  fromUser.selectAll
 );
 
 
 export const selectUserPage = (page: PageQuery) => createSelector(
   selectAllUser,
-  allUsers => {
+  allUserDetails => {
 
     const start = page.page * page.size,
       end = start + page.size;
 
-    return allUsers
+    return allUserDetails
       .slice(start, end);
   }
 );
 
 
-/*
 export const selectUserLoading = createSelector(
   selectUserState,
   userState => userState.isLoading
 );
-*/

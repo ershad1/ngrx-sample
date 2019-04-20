@@ -10,7 +10,7 @@ import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {metaReducers, reducers} from './reducers';
+// import {metaReducers, reducers} from './reducers/app.reducer';
 import {uiReducer} from './shared/state/ui/ui.reducer';
 
 @NgModule({
@@ -23,11 +23,11 @@ import {uiReducer} from './shared/state/ui/ui.reducer';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers, {metaReducers}),
+    // StoreModule.forRoot(reducers, {metaReducers}),
     StoreModule.forRoot({ui: uiReducer}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    StoreRouterConnectingModule.forRoot({stateKey: 'router'})
+    // StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
   providers: [],
   bootstrap: [AppComponent]

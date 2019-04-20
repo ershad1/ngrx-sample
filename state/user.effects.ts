@@ -4,9 +4,9 @@ import {Store} from '@ngrx/store';
 import {of} from 'rxjs/internal/observable/of';
 import {mergeMap} from 'rxjs/internal/operators/mergeMap';
 import {catchError, map} from 'rxjs/operators';
+import {AppState} from '../../reducers/app.reducer';
 import {UserService} from '../service/user.service';
 import {UserActionTypes, UserCancelled, UserLoaded, UserRequested} from './user.actions';
-import {State} from './user.reducer';
 
 @Injectable()
 export class UserEffects {
@@ -16,7 +16,7 @@ export class UserEffects {
     .pipe(
       ofType<UserRequested>(UserActionTypes.UserRequested),
       mergeMap(({payload}) =>
-        this.userService.findAllUsers(payload.page, payload.size, payload.sort, payload.sortDirection)
+        this.userService.findAllUsers(payload.page.page, payload.page.size, payload.page.sort, payload.page.sortDirection)
           .pipe(
             catchError(err => {
               console.log('error isLoading a user details page ', err);
@@ -25,11 +25,11 @@ export class UserEffects {
             })
           )
       ),
-      map(users => new UserLoaded(users))
+      map(userDetails => new UserLoaded({userDetails}))
     );
 
   constructor(private actions$: Actions, private userService: UserService,
-              private store: Store<State>) {
+              private store: Store<AppState>) {
 
   }
 }

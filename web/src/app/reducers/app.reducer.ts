@@ -4,15 +4,15 @@ import {storeFreeze} from 'ngrx-store-freeze';
 import {environment} from '../../environments/environment';
 import * as fromUi from '../shared/state/ui/ui.reducer';
 
-export interface AppState {
+export interface State {
   ui: fromUi.State;
 
 }
 
-export const reducers: ActionReducerMap<AppState> = {
+export const reducers: ActionReducerMap<State> = {
   // router: routerReducer,
   ui: fromUi.uiReducer
 };
 
 
-export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [storeFreeze] : [];
+// export const metaReducers: MetaReducer<State>[] = !environment.production ? [storeFreeze] : [];

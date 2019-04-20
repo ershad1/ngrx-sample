@@ -18,7 +18,7 @@ export class UserRequested implements Action {
 
   readonly type = UserActionTypes.UserRequested;
 
-  constructor(public payload: PageQuery) {
+  constructor(public payload: { page: PageQuery }) {
   }
 
 }
@@ -27,8 +27,9 @@ export class UserLoaded implements Action {
 
   readonly type = UserActionTypes.UserLoaded;
 
-  constructor(public payload: User[]) {
+  constructor(public payload: { userDetails: User[] }) {
   }
+
 }
 
 export class UserCancelled implements Action {
