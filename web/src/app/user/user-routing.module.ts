@@ -1,15 +1,15 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {UserDetailsComponent} from './user-details/user-details.component';
+import {UserComponent} from './user/user.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: UserDetailsComponent
+    component: UserComponent
   },
   {
     path: '/user',
-    component: UserDetailsComponent
+    component: UserComponent
   },
 
 ];

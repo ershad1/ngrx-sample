@@ -2,17 +2,17 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {UserDetails} from '../model/user-details';
+import {User} from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserDetailsService {
+export class UserService {
 
   constructor(private http: HttpClient) {
   }
 
-  findAllUsersDetails(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<UserDetails[]> {
+  findAllUsersDetails(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<User[]> {
     return this.http.get('/userDetails', {
       params: new HttpParams()
         .set('page', page.toString())

@@ -5,11 +5,11 @@ import {of} from 'rxjs/internal/observable/of';
 import {mergeMap} from 'rxjs/internal/operators/mergeMap';
 import {catchError, map} from 'rxjs/operators';
 import {AppState} from '../../reducers';
-import {UserDetailsService} from '../service/user-details.service';
-import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user-details.actions';
+import {UserService} from '../service/user.service';
+import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user.actions';
 
 @Injectable()
-export class UserDetailsEffects {
+export class UserEffects {
 
   @Effect()
   loadUsersDetailsPage$ = this.actions$
@@ -28,7 +28,7 @@ export class UserDetailsEffects {
       map(userDetails => new UserDetailsLoaded({userDetails}))
     );
 
-  constructor(private actions$: Actions, private userDetailsService: UserDetailsService,
+  constructor(private actions$: Actions, private userDetailsService: UserService,
               private store: Store<AppState>) {
 
   }

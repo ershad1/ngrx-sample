@@ -1,20 +1,19 @@
 import {createEntityAdapter, EntityAdapter, EntityState} from '@ngrx/entity';
-import {UserDetails} from '../model/user-details';
-import {UserDetailsActions, UserDetailsActionTypes} from './user-details.actions';
+import {User} from '../model/user';
+import {UserActions, UserDetailsActionTypes} from './user.actions';
 
 
-export interface UserDetailsState extends EntityState<UserDetails> {
+export interface UserDetailsState extends EntityState<User> {
   loading: boolean;
 }
 
-export const adapter: EntityAdapter<UserDetails> =
-  createEntityAdapter<UserDetails>();
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
-const initialLessonsState = adapter.getInitialState({
+const initialLessonsState: UserDetailsState = adapter.getInitialState({
   loading: false
 });
 
-export function userDetailsReducer(state = initialLessonsState, action: UserDetailsActions): UserDetailsState {
+export function userDetailsReducer(state = initialLessonsState, action: UserActions): UserDetailsState {
 
   switch (action.type) {
     case UserDetailsActionTypes.UserDetailsRequested:

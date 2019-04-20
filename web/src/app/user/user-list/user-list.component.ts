@@ -5,21 +5,21 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/internal/operators/tap';
 import {AppState} from '../../reducers';
-import {UserDetails} from '../model/user-details';
-import {UserDetailsDataSource} from '../service/user-details.datasource';
-import {PageQuery} from '../state/user-details.actions';
-import {selectUserDetailsLoading} from '../state/user-details.selectors';
+import {User} from '../model/user';
+import {UserDatasource} from '../service/user.datasource';
+import {PageQuery} from '../state/user.actions';
+import {selectUserDetailsLoading} from '../state/user.selectors';
 
 @Component({
-  selector: 'app-user-details-list',
-  templateUrl: './user-details-list.component.html',
-  styleUrls: ['./user-details-list.component.scss']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.scss']
 })
-export class UserDetailsListComponent implements OnInit, AfterViewInit {
+export class UserListComponent implements OnInit, AfterViewInit {
 
   @Input()
-  users: UserDetails[];
-  dataSource: UserDetailsDataSource;
+  users: User[];
+  dataSource: UserDatasource;
 
   displayedColumns = ['userId', 'username', 'firstName', 'lastName', 'gender', 'status'];
 
@@ -36,7 +36,7 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
     this.loading$ = this.store.pipe(select(selectUserDetailsLoading));
 
-    this.dataSource = new UserDetailsDataSource(this.store);
+    this.dataSource = new UserDatasource(this.store);
 
     const initialPage: PageQuery = {
       page: 0, size: 20, sort: '', sortDirection: ''

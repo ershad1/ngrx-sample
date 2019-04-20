@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {UserDetails} from '../model/user-details';
+import {User} from '../model/user';
 
 export enum UserDetailsActionTypes {
   UserDetailsRequested = '[UserDetails Landing Page] UserDetails Page Requested',
@@ -27,7 +27,7 @@ export class UserDetailsLoaded implements Action {
 
   readonly type = UserDetailsActionTypes.UserDetailsLoaded;
 
-  constructor(public payload: { userDetails: UserDetails[] }) {
+  constructor(public payload: { userDetails: User[] }) {
   }
 
 }
@@ -38,7 +38,7 @@ export class UserDetailsCancelled implements Action {
 
 }
 
-export type UserDetailsActions =
+export type UserActions =
   UserDetailsRequested
   | UserDetailsLoaded
   | UserDetailsCancelled;

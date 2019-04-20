@@ -3,14 +3,14 @@ import {select, Store} from '@ngrx/store';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {AppState} from '../../reducers';
-import {UserDetails} from '../model/user-details';
-import {PageQuery, UserDetailsRequested} from '../state/user-details.actions';
-import {selectUserDetailsPage} from '../state/user-details.selectors';
+import {User} from '../model/user';
+import {PageQuery, UserDetailsRequested} from '../state/user.actions';
+import {selectUserDetailsPage} from '../state/user.selectors';
 
 
-export class UserDetailsDataSource implements DataSource<UserDetails> {
+export class UserDatasource implements DataSource<User> {
 
-  private userDetailsSubject = new BehaviorSubject<UserDetails[]>([]);
+  private userDetailsSubject = new BehaviorSubject<User[]>([]);
 
   constructor(private store: Store<AppState>) {
 
@@ -33,7 +33,7 @@ export class UserDetailsDataSource implements DataSource<UserDetails> {
 
   }
 
-  connect(collectionViewer: CollectionViewer): Observable<UserDetails[]> {
+  connect(collectionViewer: CollectionViewer): Observable<User[]> {
     console.log('Connecting data source');
     return this.userDetailsSubject.asObservable();
   }

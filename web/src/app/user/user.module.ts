@@ -3,24 +3,24 @@ import {NgModule} from '@angular/core';
 import {EffectsModule} from '@ngrx/effects';
 import {StoreModule} from '@ngrx/store';
 import {SharedModule} from '../shared/shared.module';
-import {UserDetailsEffects} from './state/user-details.effects';
-import {userDetailsReducer} from './state/user-details.reducers';
-import {UserDetailsListComponent} from './user-details-list/user-details-list.component';
-import {UserDetailsComponent} from './user-details/user-details.component';
+import {UserEffects} from './state/user.effects';
+import {userDetailsReducer} from './state/user.reducers';
+import {UserListComponent} from './user-list/user-list.component';
+import {UserComponent} from './user/user.component';
 
 import {UserRoutingModule} from './user-routing.module';
 
 @NgModule({
   declarations: [
-    UserDetailsComponent,
-    UserDetailsListComponent
+    UserComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     SharedModule,
     StoreModule.forFeature('userDetails', userDetailsReducer),
-    EffectsModule.forFeature([UserDetailsEffects])
+    EffectsModule.forFeature([UserEffects])
   ]
 })
 export class UserModule {
