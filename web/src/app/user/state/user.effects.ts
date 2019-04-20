@@ -6,29 +6,29 @@ import {mergeMap} from 'rxjs/internal/operators/mergeMap';
 import {catchError, map} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {UserService} from '../service/user.service';
-import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user.actions';
+import {UserActionTypes, UserCancelled, UserLoaded, UserRequested} from './user.actions';
 
 @Injectable()
 export class UserEffects {
 
   @Effect()
-  loadUsersDetailsPage$ = this.actions$
+  loadUserPage$ = this.actions$
     .pipe(
-      ofType<UserDetailsRequested>(UserDetailsActionTypes.UserDetailsRequested),
+      ofType<UserRequested>(UserActionTypes.UserRequested),
       mergeMap(({payload}) =>
-        this.userDetailsService.findAllUsersDetails(payload.page.page, payload.page.size, payload.page.sort, payload.page.sortDirection)
+        this.userService.findAllUsers(payload.page.page, payload.page.size, payload.page.sort, payload.page.sortDirection)
           .pipe(
             catchError(err => {
               console.log('error loading a user details page ', err);
-              this.store.dispatch(new UserDetailsCancelled());
+              this.store.dispatch(new UserCancelled());
               return of([]);
             })
           )
       ),
-      map(userDetails => new UserDetailsLoaded({userDetails}))
+      map(userDetails => new UserLoaded({userDetails}))
     );
 
-  constructor(private actions$: Actions, private userDetailsService: UserService,
+  constructor(private actions$: Actions, private userService: UserService,
               private store: Store<AppState>) {
 
   }

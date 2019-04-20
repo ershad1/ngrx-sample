@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable, of} from 'rxjs';
 import {catchError, tap} from 'rxjs/operators';
 import {AppState} from '../../reducers';
 import {User} from '../model/user';
-import {PageQuery, UserDetailsRequested} from '../state/user.actions';
+import {PageQuery, UserRequested} from '../state/user.actions';
 import {selectUserDetailsPage} from '../state/user.selectors';
 
 
@@ -24,7 +24,7 @@ export class UserDatasource implements DataSource<User> {
           if (userDetails.length > 0) {
             this.userDetailsSubject.next(userDetails);
           } else {
-            this.store.dispatch(new UserDetailsRequested({page}));
+            this.store.dispatch(new UserRequested({page}));
           }
         }),
         catchError(() => of([]))

@@ -1,10 +1,10 @@
 import {Action} from '@ngrx/store';
 import {User} from '../model/user';
 
-export enum UserDetailsActionTypes {
-  UserDetailsRequested = '[UserDetails Landing Page] UserDetails Page Requested',
-  UserDetailsLoaded = '[UserDetails API] UserDetails Page Loaded',
-  UserDetailsCancelled = '[UserDetails API] UserDetails Page Cancelled'
+export enum UserActionTypes {
+  UserRequested = '[User Landing Page] User Page Requested',
+  UserLoaded = '[User API] User Page Loaded',
+  UserCancelled = '[User API] User Page Cancelled'
 }
 
 export interface PageQuery {
@@ -14,31 +14,31 @@ export interface PageQuery {
   sortDirection: string; // sort direction for example asc or desc
 }
 
-export class UserDetailsRequested implements Action {
+export class UserRequested implements Action {
 
-  readonly type = UserDetailsActionTypes.UserDetailsRequested;
+  readonly type = UserActionTypes.UserRequested;
 
   constructor(public payload: { page: PageQuery }) {
   }
 
 }
 
-export class UserDetailsLoaded implements Action {
+export class UserLoaded implements Action {
 
-  readonly type = UserDetailsActionTypes.UserDetailsLoaded;
+  readonly type = UserActionTypes.UserLoaded;
 
   constructor(public payload: { userDetails: User[] }) {
   }
 
 }
 
-export class UserDetailsCancelled implements Action {
+export class UserCancelled implements Action {
 
-  readonly type = UserDetailsActionTypes.UserDetailsCancelled;
+  readonly type = UserActionTypes.UserCancelled;
 
 }
 
 export type UserActions =
-  UserDetailsRequested
-  | UserDetailsLoaded
-  | UserDetailsCancelled;
+  UserRequested
+  | UserLoaded
+  | UserCancelled;

@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  findAllUsersDetails(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<User[]> {
+  findAllUsers(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<User[]> {
     return this.http.get('/userDetails', {
       params: new HttpParams()
         .set('page', page.toString())
