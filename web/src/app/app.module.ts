@@ -11,6 +11,7 @@ import {environment} from '../environments/environment';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {metaReducers, reducers} from './reducers';
+import {uiReducer} from './shared/state/ui/ui.reducer';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {metaReducers, reducers} from './reducers';
     BrowserAnimationsModule,
     HttpClientModule,
     StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot({ui: uiReducer}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot({stateKey: 'router'})
