@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {PageQuery} from './user.actions';
-import * as fromUserDetails from './user.reducers';
+import * as fromUser from './user.reducers';
 import {UserState} from './user.reducers';
 
 export const selectUserState = createFeatureSelector<UserState>('user');
@@ -8,7 +8,7 @@ export const selectUserState = createFeatureSelector<UserState>('user');
 
 export const selectAllUser = createSelector(
   selectUserState,
-  fromUserDetails.selectAll
+  fromUser.selectAll
 );
 
 
