@@ -1,7 +1,7 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store/src/selector';
 import {PageQuery} from './user-details.actions';
-import {UserDetailsState} from './user-details.reducers';
 import * as fromUserDetails from './user-details.reducers';
+import {UserDetailsState} from './user-details.reducers';
 
 export const selectUserDetailsState = createFeatureSelector<UserDetailsState>('userDetails');
 
@@ -9,11 +9,10 @@ export const selectUserDetailsState = createFeatureSelector<UserDetailsState>('u
 export const selectAllLessons = createSelector(
   selectUserDetailsState,
   fromUserDetails.selectAll
-
 );
 
 
-export const selectUserDetailsPage = (page:PageQuery) => createSelector(
+export const selectUserDetailsPage = (page: PageQuery) => createSelector(
   selectAllLessons,
   allUserDetails => {
 

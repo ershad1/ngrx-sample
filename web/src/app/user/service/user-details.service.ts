@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {map} from 'rxjs/operators';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 import {UserDetails} from '../model/user-details';
-import {PageQuery} from '../state/user-details.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +20,7 @@ export class UserDetailsService {
         .set('size', pageQuery.size.toString())
         .set('sort', pageQuery.sort + ',' + pageQuery.sortDirection)
     }).pipe(
-      map(res => res["payload"])
+      map(res => res['payload'])
     );
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {UserDetails} from '../model/user-details';
 
@@ -11,7 +11,8 @@ export class UserDetailsComponent implements OnInit {
 
   users$: Observable<UserDetails[]>;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

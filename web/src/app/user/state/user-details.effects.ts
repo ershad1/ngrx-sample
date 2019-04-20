@@ -5,9 +5,8 @@ import {of} from 'rxjs/internal/observable/of';
 import {mergeMap} from 'rxjs/internal/operators/mergeMap';
 import {catchError, map} from 'rxjs/operators';
 import {AppState} from '../../reducers';
-import {UserDetailsDataSource} from '../service/user-details.datasource';
-import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user-details.actions';
 import {UserDetailsService} from '../service/user-details.service';
+import {UserDetailsActionTypes, UserDetailsCancelled, UserDetailsLoaded, UserDetailsRequested} from './user-details.actions';
 
 @Injectable()
 export class UserDetailsEffects {
@@ -25,7 +24,6 @@ export class UserDetailsEffects {
               return of([]);
             })
           )
-
       ),
       map(usersDetails => new UserDetailsLoaded({usersDetails}))
     );

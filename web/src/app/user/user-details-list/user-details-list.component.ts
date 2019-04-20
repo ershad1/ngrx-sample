@@ -19,14 +19,14 @@ import {selectUserDetailsLoading} from '../state/user-details.selectors';
 export class UserDetailsListComponent implements OnInit, AfterViewInit {
 
   @Input()
-  users : UserDetails[];
+  users: UserDetails[];
   dataSource: UserDetailsDataSource;
 
-  displayedColumns = ["seqNo", "description", "duration"];
+  displayedColumns = ['userId', 'username', 'firstName', 'lastName', 'gender', 'status'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  loading$ : Observable<boolean>;
+  loading$: Observable<boolean>;
 
 
   constructor(private route: ActivatedRoute, private store: Store<AppState>) {
@@ -40,11 +40,11 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
     this.dataSource = new UserDetailsDataSource(this.store);
 
     const initialPage: PageQuery = {
-      page: 0, size: 20, sort: "", sortDirection: ""
+      page: 0, size: 20, sort: '', sortDirection: ''
 
     };
 
-    this.dataSource.userDetailsLoad( initialPage);
+    this.dataSource.userDetailsLoad(initialPage);
 
   }
 
@@ -62,7 +62,7 @@ export class UserDetailsListComponent implements OnInit, AfterViewInit {
   loadUsersDetailsPage$() {
 
     const newPage: PageQuery = {
-      page: 0, size: 0, sort: "", sortDirection: ""
+      page: 0, size: 0, sort: '', sortDirection: ''
 
     };
 
