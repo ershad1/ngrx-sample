@@ -1,4 +1,4 @@
-import {createFeatureSelector, createSelector} from '@ngrx/store/src/selector';
+import {createFeatureSelector, createSelector} from '@ngrx/store';
 import {PageQuery} from './user-details.actions';
 import * as fromUserDetails from './user-details.reducers';
 import {UserDetailsState} from './user-details.reducers';

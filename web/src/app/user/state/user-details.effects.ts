@@ -16,7 +16,7 @@ export class UserDetailsEffects {
     .pipe(
       ofType<UserDetailsRequested>(UserDetailsActionTypes.UserDetailsRequested),
       mergeMap(({payload}) =>
-        this.userDetailsService.findAllUsersDetails(payload)
+        this.userDetailsService.findAllUsersDetails(payload.page.page, payload.page.size, payload.page.sort, payload.page.sortDirection)
           .pipe(
             catchError(err => {
               console.log('error loading a user details page ', err);
@@ -25,7 +25,7 @@ export class UserDetailsEffects {
             })
           )
       ),
-      map(usersDetails => new UserDetailsLoaded({usersDetails}))
+      map(userDetails => new UserDetailsLoaded({userDetails}))
     );
 
   constructor(private actions$: Actions, private userDetailsService: UserDetailsService,

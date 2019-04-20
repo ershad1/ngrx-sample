@@ -1,8 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
-import {Store} from '@ngrx/store';
-import {select} from '@ngrx/store/src/store';
+import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/internal/operators/tap';
 import {AppState} from '../../reducers';

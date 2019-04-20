@@ -9,16 +9,16 @@ import {UserDetails} from '../model/user-details';
 })
 export class UserDetailsService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { 
 
   }
 
-  findAllUsersDetails(pageQuery): Observable<UserDetails[]> {
+  findAllUsersDetails(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<UserDetails[]> {
     return this.http.get('/userDetails', {
       params: new HttpParams()
-        .set('page', pageQuery.page.toString())
-        .set('size', pageQuery.size.toString())
-        .set('sort', pageQuery.sort + ',' + pageQuery.sortDirection)
+        .set('page', page.toString())
+        .set('size', size.toString())
+        .set('sort', sort + ',' + sortDirection)
     }).pipe(
       map(res => res['payload'])
     );
