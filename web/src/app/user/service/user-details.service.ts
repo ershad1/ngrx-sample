@@ -10,7 +10,6 @@ import {UserDetails} from '../model/user-details';
 export class UserDetailsService {
 
   constructor(private http: HttpClient) {
-
   }
 
   findAllUsersDetails(page = 0, size = 20, sort = '', sortDirection = 'desc'): Observable<UserDetails[]> {

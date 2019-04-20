@@ -3,16 +3,16 @@ import {RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
 
-  {path: '', redirectTo: '/user', pathMatch: 'full'},
+  {path: '', redirectTo: 'user', pathMatch: 'full'},
   {
-    path: 'user',
+    path: '',
     loadChildren: './user/user.module#UserModule',
     canActivate: []
   },
-  {
-    path: '**',
-    redirectTo: '/'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/'
+  // }
 ];
 
 

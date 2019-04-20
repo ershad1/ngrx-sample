@@ -6,8 +6,12 @@ export const routes: Routes = [
   {
     path: '',
     component: UserDetailsComponent
+  },
+  {
+    path: '/user',
+    component: UserDetailsComponent
+  },
 
-  }
 ];
 
 @NgModule({
